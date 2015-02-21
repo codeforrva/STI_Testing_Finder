@@ -16,6 +16,7 @@
 		E2D108F31A98E53A00A90421 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D108F11A98E53A00A90421 /* LaunchScreen.xib */; };
 		E2D108FF1A98E53A00A90421 /* FindATestingCenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108FE1A98E53A00A90421 /* FindATestingCenterTests.m */; };
 		E2D109091A98E86C00A90421 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D109081A98E86C00A90421 /* MapKit.framework */; };
+		E2D1090B1A98F11900A90421 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D1090A1A98F11900A90421 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		E2D108FD1A98E53A00A90421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2D108FE1A98E53A00A90421 /* FindATestingCenterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindATestingCenterTests.m; sourceTree = "<group>"; };
 		E2D109081A98E86C00A90421 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E2D1090A1A98F11900A90421 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2D1090B1A98F11900A90421 /* CoreLocation.framework in Frameworks */,
 				E2D109091A98E86C00A90421 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,10 +71,11 @@
 		E2D108D31A98E53A00A90421 = {
 			isa = PBXGroup;
 			children = (
-				E2D109081A98E86C00A90421 /* MapKit.framework */,
 				E2D108DE1A98E53A00A90421 /* FindATestingCenter */,
 				E2D108FB1A98E53A00A90421 /* FindATestingCenterTests */,
 				E2D108DD1A98E53A00A90421 /* Products */,
+				E2D1090A1A98F11900A90421 /* CoreLocation.framework */,
+				E2D109081A98E86C00A90421 /* MapKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
