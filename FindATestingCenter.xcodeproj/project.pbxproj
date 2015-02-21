@@ -17,6 +17,9 @@
 		E2D108FF1A98E53A00A90421 /* FindATestingCenterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108FE1A98E53A00A90421 /* FindATestingCenterTests.m */; };
 		E2D109091A98E86C00A90421 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D109081A98E86C00A90421 /* MapKit.framework */; };
 		E2D1090B1A98F11900A90421 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D1090A1A98F11900A90421 /* CoreLocation.framework */; };
+		E2D1090E1A9918BF00A90421 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D1090D1A9918BF00A90421 /* MapViewAnnotation.m */; };
+		E2D109111A991FEF00A90421 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D109101A991FEF00A90421 /* CHCSVParser.m */; };
+		E2D109141A99283E00A90421 /* locations.csv in Resources */ = {isa = PBXBuildFile; fileRef = E2D109131A99283E00A90421 /* locations.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,11 @@
 		E2D108FE1A98E53A00A90421 /* FindATestingCenterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindATestingCenterTests.m; sourceTree = "<group>"; };
 		E2D109081A98E86C00A90421 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E2D1090A1A98F11900A90421 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E2D1090C1A9918BF00A90421 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
+		E2D1090D1A9918BF00A90421 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
+		E2D1090F1A991FEF00A90421 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = "../../../Teli App/Gam/Pods/CHCSVParser/CHCSVParser/CHCSVParser/CHCSVParser.h"; sourceTree = "<group>"; };
+		E2D109101A991FEF00A90421 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHCSVParser.m; path = "../../../Teli App/Gam/Pods/CHCSVParser/CHCSVParser/CHCSVParser/CHCSVParser.m"; sourceTree = "<group>"; };
+		E2D109131A99283E00A90421 /* locations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = locations.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +99,15 @@
 		E2D108DE1A98E53A00A90421 /* FindATestingCenter */ = {
 			isa = PBXGroup;
 			children = (
+				E2D108EC1A98E53A00A90421 /* Main.storyboard */,
 				E2D108E31A98E53A00A90421 /* AppDelegate.h */,
 				E2D108E41A98E53A00A90421 /* AppDelegate.m */,
 				E2D108E91A98E53A00A90421 /* ViewController.h */,
 				E2D108EA1A98E53A00A90421 /* ViewController.m */,
-				E2D108EC1A98E53A00A90421 /* Main.storyboard */,
+				E2D1090C1A9918BF00A90421 /* MapViewAnnotation.h */,
+				E2D1090D1A9918BF00A90421 /* MapViewAnnotation.m */,
+				E2D109131A99283E00A90421 /* locations.csv */,
+				E2D109121A99200900A90421 /* CSV Parser */,
 				E2D108EF1A98E53A00A90421 /* Images.xcassets */,
 				E2D108F11A98E53A00A90421 /* LaunchScreen.xib */,
 				E2D108E61A98E53A00A90421 /* FindATestingCenter.xcdatamodeld */,
@@ -128,6 +140,15 @@
 				E2D108FD1A98E53A00A90421 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E2D109121A99200900A90421 /* CSV Parser */ = {
+			isa = PBXGroup;
+			children = (
+				E2D1090F1A991FEF00A90421 /* CHCSVParser.h */,
+				E2D109101A991FEF00A90421 /* CHCSVParser.m */,
+			);
+			name = "CSV Parser";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +234,7 @@
 				E2D108EE1A98E53A00A90421 /* Main.storyboard in Resources */,
 				E2D108F31A98E53A00A90421 /* LaunchScreen.xib in Resources */,
 				E2D108F01A98E53A00A90421 /* Images.xcassets in Resources */,
+				E2D109141A99283E00A90421 /* locations.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,8 +254,10 @@
 			files = (
 				E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */,
 				E2D108E21A98E53A00A90421 /* main.m in Sources */,
+				E2D109111A991FEF00A90421 /* CHCSVParser.m in Sources */,
 				E2D108EB1A98E53A00A90421 /* ViewController.m in Sources */,
 				E2D108E81A98E53A00A90421 /* FindATestingCenter.xcdatamodeld in Sources */,
+				E2D1090E1A9918BF00A90421 /* MapViewAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

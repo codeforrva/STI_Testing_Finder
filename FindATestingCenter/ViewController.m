@@ -7,9 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "MapViewAnnotation.h"
 #define METERS_PER_MILE 1609.344
 
 @interface ViewController ()
+
+@property (nonatomic, strong) NSMutableArray *fields;
+@property (nonatomic, strong) NSMutableArray *currentRow;
+@property (nonatomic, strong) NSMutableArray *outputArray;
+@property BOOL readingTopLine;
 
 @end
 
@@ -20,6 +26,8 @@
     
     [self startLocationManager];
     self.mapView.showsUserLocation = YES;
+    
+    [self.mapView addAnnotations:[self createAnnotations]];
 }
 
 -(void)startLocationManager {
@@ -49,5 +57,76 @@
 }
 
 
+#pragma mark - CSV Parsing
+
+- (NSMutableArray *)createAnnotations {
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"locations" ofType:@"csv"];
+    NSURL *url =  [NSURL fileURLWithPath:filePath];
+    CHCSVParser *parser = [[CHCSVParser alloc]initWithContentsOfCSVURL:url];
+    parser.delegate = self;
+    [parser parse];
+    
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    
+    for(NSArray *row in self.outputArray) {
+        
+        NSString *title = [row objectAtIndex:1];
+        NSNumber *latitude = [row objectAtIndex:12];
+        NSNumber *longitude = [row objectAtIndex:13];
+        
+        //Create coordinates from the latitude and longitude values
+        CLLocationCoordinate2D coord;
+        coord.latitude = latitude.doubleValue;
+        coord.longitude = longitude.doubleValue;
+        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:title AndCoordinate:coord];
+        [annotations addObject:annotation];
+    }
+    NSLog(@"annotations: %@", annotations);
+    return annotations;
+}
+
+
+
+- (void)parserDidBeginDocument:(CHCSVParser *)parser {
+    self.fields = [[NSMutableArray alloc] init];
+    self.currentRow = [[NSMutableArray alloc] init];
+    self.outputArray = [[NSMutableArray alloc] init];
+}
+
+
+- (void)parser:(CHCSVParser *)parser didBeginLine:(NSUInteger)recordNumber
+{
+    if (recordNumber == 1) {
+        self.fields = [[NSMutableArray alloc]init];
+        self.readingTopLine = YES;
+    }
+    else {
+        self.currentRow = [[NSMutableArray alloc]init];
+        self.readingTopLine = NO;
+    }
+}
+
+- (void)parser:(CHCSVParser *)parser didReadField:(NSString *)field atIndex:(NSInteger)fieldIndex {
+    
+    if (!self.readingTopLine){
+        [self.currentRow addObject:field];
+    }
+}
+
+- (void)parser:(CHCSVParser *)parser didEndLine:(NSUInteger)recordNumber {
+    if (!self.readingTopLine){
+        [self.outputArray addObject:self.currentRow];
+    }
+    self.currentRow = nil;
+}
+
+- (void)parserDidEndDocument:(CHCSVParser *)parser {
+     NSLog(@"Parser ended: %@", self.outputArray);
+}
+- (void)parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
+    NSLog(@"Parser failed with error: %@ %@", [error localizedDescription], [error userInfo]);
+    self.outputArray = nil;
+}
 
 @end

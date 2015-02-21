@@ -12,6 +12,8 @@
 	<dict>
 		<key>C5EBDE3F0938E8100C63DBCCA26E7A3B824953F1</key>
 		<string>github.com:codeforrva/STI_Testing_Finder.git</string>
+		<key>DEE0A0128E423C158A8EC381F5798C288160FC86</key>
+		<string>https://bitbucket.org/fliginst/gam.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>FindATestingCenter.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>C5EBDE3F0938E8100C63DBCCA26E7A3B824953F1</key>
 		<string>../..</string>
+		<key>DEE0A0128E423C158A8EC381F5798C288160FC86</key>
+		<string>../../../../teli%20app/Gam</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:codeforrva/STI_Testing_Finder.git</string>
@@ -28,6 +32,14 @@
 	<string>C5EBDE3F0938E8100C63DBCCA26E7A3B824953F1</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DEE0A0128E423C158A8EC381F5798C288160FC86</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Gam</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
