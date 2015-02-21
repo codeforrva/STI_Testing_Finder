@@ -23,11 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self startLocationManager];
     self.mapView.showsUserLocation = YES;
     
     [self.mapView addAnnotations:[self createAnnotations]];
+    
+    [self startLocationManager];
 }
 
 -(void)startLocationManager {
@@ -47,11 +47,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = 37.5333;
-    zoomLocation.longitude= -77.4667;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 5*METERS_PER_MILE, 5*METERS_PER_MILE);
+    zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
+    zoomLocation.longitude= self.locationManager.location.coordinate.longitude;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 8*METERS_PER_MILE, 8*METERS_PER_MILE);
 
     [self.mapView setRegion:viewRegion animated:YES];
+    [self.mapView regionThatFits:viewRegion];
     
     NSLog(@"%@", [self deviceLocation]);
 }
@@ -71,9 +72,9 @@
     
     for(NSArray *row in self.outputArray) {
         
-        NSString *title = [row objectAtIndex:1];
-        NSNumber *latitude = [row objectAtIndex:12];
-        NSNumber *longitude = [row objectAtIndex:13];
+        NSString *title = [row objectAtIndex:0];
+        NSNumber *latitude = [row objectAtIndex:11];
+        NSNumber *longitude = [row objectAtIndex:12];
         
         //Create coordinates from the latitude and longitude values
         CLLocationCoordinate2D coord;
@@ -81,8 +82,9 @@
         coord.longitude = longitude.doubleValue;
         MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:title AndCoordinate:coord];
         [annotations addObject:annotation];
+        
+        NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
     }
-    NSLog(@"annotations: %@", annotations);
     return annotations;
 }
 
@@ -122,7 +124,6 @@
 }
 
 - (void)parserDidEndDocument:(CHCSVParser *)parser {
-     NSLog(@"Parser ended: %@", self.outputArray);
 }
 - (void)parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
     NSLog(@"Parser failed with error: %@ %@", [error localizedDescription], [error userInfo]);
