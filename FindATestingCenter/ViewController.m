@@ -6,8 +6,14 @@
 //  Copyright (c) 2015 CodeForRVA. All rights reserved.
 //
 
+
+//  API to hit - https://brigades.opendatanetwork.com/resource/rj82-n357.json
+
+
+
 #import "ViewController.h"
 #import "MapViewAnnotation.h"
+#import "ClinicLocationProvider.h"
 #define METERS_PER_MILE 1609.344
 
 @interface ViewController ()
@@ -28,6 +34,8 @@
     [self.mapView addAnnotations:[self createAnnotations]];
     
     [self startLocationManager];
+    
+    [self fetchData];
 }
 
 -(void)startLocationManager {
@@ -41,20 +49,40 @@
 }
 
 
-- (NSString *)deviceLocation {
-    return [NSString stringWithFormat:@"latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
-    zoomLocation.longitude= self.locationManager.location.coordinate.longitude;
+    
+    if (self.locationManager.location.coordinate.latitude == 0.0) {
+        //If location not enabled, zoom in on Daily Planet location
+        zoomLocation.latitude = 37.5476;
+        zoomLocation.longitude = -77.4476;
+    } else {
+        zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
+        zoomLocation.longitude= self.locationManager.location.coordinate.longitude;
+    }
+    
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 8*METERS_PER_MILE, 8*METERS_PER_MILE);
 
     [self.mapView setRegion:viewRegion animated:YES];
     [self.mapView regionThatFits:viewRegion];
     
     NSLog(@"%@", [self deviceLocation]);
+}
+
+
+- (NSString *)deviceLocation {
+    return [NSString stringWithFormat:@"latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+}
+
+
+-(void)fetchData {
+    
+    [ClinicLocationProvider fetchClinicsWithCompletionHandler:^(NSArray *clinics, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
 }
 
 
@@ -89,6 +117,8 @@
 }
 
 
+
+#pragma mark - Parser
 
 - (void)parserDidBeginDocument:(CHCSVParser *)parser {
     self.fields = [[NSMutableArray alloc] init];

@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>AB0F4807-B2C2-4FD2-8499-AF27B1BFA629</string>
+	<string>9A2A1CA8-2FEA-4291-BEBD-7E151226DE08</string>
 	<key>IDESourceControlProjectName</key>
 	<string>FindATestingCenter</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -16,13 +16,13 @@
 		<string>https://bitbucket.org/fliginst/gam.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>FindATestingCenter.xcodeproj</string>
+	<string>FindATestingCenter.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C5EBDE3F0938E8100C63DBCCA26E7A3B824953F1</key>
-		<string>../..</string>
+		<string>..</string>
 		<key>DEE0A0128E423C158A8EC381F5798C288160FC86</key>
-		<string>../../../teli%20app/Gam</string>
+		<string>../../../Teli%20App/Gam</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:codeforrva/STI_Testing_Finder.git</string>
