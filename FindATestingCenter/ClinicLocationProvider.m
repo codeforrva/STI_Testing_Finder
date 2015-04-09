@@ -35,6 +35,7 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
     NSLog(@"Response Dictionary: %@", dictionary);
     NSMutableArray *clinicsArray = [[NSMutableArray alloc] init];
     
+    
     return clinicsArray;
 }
 
