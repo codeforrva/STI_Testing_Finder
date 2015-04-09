@@ -10,6 +10,6 @@
 
 @interface ClinicLocationProvider : NSObject
 
-+ (void)fetchClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler;
++ (void)requestClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler;
 
 @end

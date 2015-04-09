@@ -78,7 +78,7 @@
 
 -(void)fetchData {
     
-    [ClinicLocationProvider fetchClinicsWithCompletionHandler:^(NSArray *clinics, NSError *error) {
+    [ClinicLocationProvider requestClinicsWithCompletionHandler:^(NSArray *clinics, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }

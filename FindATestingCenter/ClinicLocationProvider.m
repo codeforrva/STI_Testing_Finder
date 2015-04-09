@@ -13,12 +13,11 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
 
 @implementation ClinicLocationProvider
 
-+ (void)fetchClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler {
++ (void)requestClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:brigadeEndpoint parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
-        NSLog(@"Response Dictionary: %@", responseDictionary);
         NSArray *clinics = [self clinicsObjectsFromResponse:responseDictionary];
         if (completionHandler) {
             completionHandler(clinics,nil);
@@ -32,8 +31,8 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
 }
 
 
-+ (NSArray *)clinicsObjectsFromResponse:(NSDictionary *)dictionary
-{
++ (NSArray *)clinicsObjectsFromResponse:(NSDictionary *)dictionary {
+    NSLog(@"Response Dictionary: %@", dictionary);
     NSMutableArray *clinicsArray = [[NSMutableArray alloc] init];
     
     return clinicsArray;
