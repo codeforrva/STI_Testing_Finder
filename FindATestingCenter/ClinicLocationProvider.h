@@ -8,14 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface ClinicLocationProvider : NSObject
-
-+ (void)requestClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler;
-
-@end
-
-
 @interface ClinicDataObject : NSObject
 
 @property (nonatomic) NSInteger clinicID;
@@ -31,3 +23,11 @@
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @end
+
+@interface ClinicLocationProvider : NSObject
+
++ (void)requestClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler;
+
+@end
+
+

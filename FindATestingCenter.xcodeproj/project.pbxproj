@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6436018513BCF872A04896DA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7617195CEE0754B417A5D7 /* libPods.a */; };
+		E293B0A31B04216D001FE0F6 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E293B0A21B04216D001FE0F6 /* CHCSVParser.m */; };
 		E296ED971AB117BB002A01D2 /* ClinicLocationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = E296ED961AB117BB002A01D2 /* ClinicLocationProvider.m */; };
 		E2D108E21A98E53A00A90421 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E11A98E53A00A90421 /* main.m */; };
 		E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E41A98E53A00A90421 /* AppDelegate.m */; };
@@ -20,7 +21,6 @@
 		E2D109091A98E86C00A90421 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D109081A98E86C00A90421 /* MapKit.framework */; };
 		E2D1090B1A98F11900A90421 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D1090A1A98F11900A90421 /* CoreLocation.framework */; };
 		E2D1090E1A9918BF00A90421 /* MapViewAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D1090D1A9918BF00A90421 /* MapViewAnnotation.m */; };
-		E2D109111A991FEF00A90421 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D109101A991FEF00A90421 /* CHCSVParser.m */; };
 		E2D109141A99283E00A90421 /* locations.csv in Resources */ = {isa = PBXBuildFile; fileRef = E2D109131A99283E00A90421 /* locations.csv */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +37,8 @@
 /* Begin PBXFileReference section */
 		5A7617195CEE0754B417A5D7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A33DE946F6C456373575F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E293B0A11B04216D001FE0F6 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		E293B0A21B04216D001FE0F6 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		E296ED951AB117BB002A01D2 /* ClinicLocationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClinicLocationProvider.h; sourceTree = "<group>"; };
 		E296ED961AB117BB002A01D2 /* ClinicLocationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClinicLocationProvider.m; sourceTree = "<group>"; };
 		E2D108DC1A98E53A00A90421 /* FindATestingCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindATestingCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,8 +59,6 @@
 		E2D1090A1A98F11900A90421 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		E2D1090C1A9918BF00A90421 /* MapViewAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewAnnotation.h; sourceTree = "<group>"; };
 		E2D1090D1A9918BF00A90421 /* MapViewAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewAnnotation.m; sourceTree = "<group>"; };
-		E2D1090F1A991FEF00A90421 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CHCSVParser.h; path = "../../../Teli App/Gam/Pods/CHCSVParser/CHCSVParser/CHCSVParser/CHCSVParser.h"; sourceTree = "<group>"; };
-		E2D109101A991FEF00A90421 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CHCSVParser.m; path = "../../../Teli App/Gam/Pods/CHCSVParser/CHCSVParser/CHCSVParser/CHCSVParser.m"; sourceTree = "<group>"; };
 		E2D109131A99283E00A90421 /* locations.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = locations.csv; sourceTree = "<group>"; };
 		F3681C21E85F143F18431EF5 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,8 +174,8 @@
 		E2D109121A99200900A90421 /* CSV Parser */ = {
 			isa = PBXGroup;
 			children = (
-				E2D1090F1A991FEF00A90421 /* CHCSVParser.h */,
-				E2D109101A991FEF00A90421 /* CHCSVParser.m */,
+				E293B0A11B04216D001FE0F6 /* CHCSVParser.h */,
+				E293B0A21B04216D001FE0F6 /* CHCSVParser.m */,
 			);
 			name = "CSV Parser";
 			sourceTree = "<group>";
@@ -316,10 +316,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E293B0A31B04216D001FE0F6 /* CHCSVParser.m in Sources */,
 				E296ED971AB117BB002A01D2 /* ClinicLocationProvider.m in Sources */,
 				E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */,
 				E2D108E21A98E53A00A90421 /* main.m in Sources */,
-				E2D109111A991FEF00A90421 /* CHCSVParser.m in Sources */,
 				E2D108EB1A98E53A00A90421 /* ViewController.m in Sources */,
 				E2D108E81A98E53A00A90421 /* FindATestingCenter.xcdatamodeld in Sources */,
 				E2D1090E1A9918BF00A90421 /* MapViewAnnotation.m in Sources */,
