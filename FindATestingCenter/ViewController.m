@@ -103,6 +103,7 @@
     for(ClinicDataObject *clinic in clinicArray) {
         
         NSString *name = clinic.name;
+        NSString *subtitle = clinic.servicesOffered;
         CGFloat latitude = clinic.latitude;
         CGFloat longitude = clinic.longitude;
         
@@ -110,7 +111,7 @@
         CLLocationCoordinate2D coord;
         coord.latitude = latitude;
         coord.longitude = longitude;
-        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name AndCoordinate:coord];
+        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name subtitle:subtitle AndCoordinate:coord];
         [annotationsArray addObject:annotation];
         
         //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);

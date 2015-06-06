@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) NSString *zipCode;
+@property (strong, nonatomic) NSString *humanAddress;
 @property (nonatomic) double latitude;
 @property (nonatomic) double longitude;
 @end

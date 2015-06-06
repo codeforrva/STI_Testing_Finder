@@ -43,7 +43,7 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
 }
 
 + (NSArray *)clinicsObjectsFromResponse:(NSDictionary *)dictionary {
-    //NSLog(@"Response Dictionary count: %lu, data: %@", (unsigned long)[dictionary count], dictionary);
+  //  NSLog(@"Response Dictionary count: %lu, data: %@", (unsigned long)[dictionary count], dictionary);
     NSMutableArray *clinicsArray = [[NSMutableArray alloc] init];
     
     for (NSDictionary *oneClinic in dictionary) {
@@ -62,7 +62,7 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
         NSDictionary *locationDictionary = oneClinic[@"location"];
         clinic.latitude = [locationDictionary[@"latitude"] floatValue];
         clinic.longitude = [locationDictionary[@"longitude"] floatValue];
-        
+        clinic.humanAddress = locationDictionary[@"human_address"];
         [clinicsArray addObject:clinic];
     }
     return clinicsArray;

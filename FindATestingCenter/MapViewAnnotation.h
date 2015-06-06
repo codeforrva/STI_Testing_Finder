@@ -11,8 +11,9 @@
 
 @interface MapViewAnnotation : NSObject <MKAnnotation>
 
-@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *title;
+@property (nonatomic,copy) NSString *subtitle;
 @property (nonatomic, readonly)CLLocationCoordinate2D coordinate;
--(id) initWithName:(NSString *)name AndCoordinate:(CLLocationCoordinate2D)coordinate;
+-(id) initWithName:(NSString *)name subtitle:(NSString *)subtitle AndCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

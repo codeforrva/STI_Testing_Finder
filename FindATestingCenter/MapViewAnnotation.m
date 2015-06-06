@@ -10,9 +10,10 @@
 
 @implementation MapViewAnnotation
 
--(id) initWithName:(NSString *)name AndCoordinate:(CLLocationCoordinate2D)coordinate{
+-(id) initWithName:(NSString *)name subtitle:(NSString *)subtitle AndCoordinate:(CLLocationCoordinate2D)coordinate{
     self = [super init];
-    _name = name;
+    _title = name;
+    _subtitle = subtitle;
     _coordinate = coordinate;
     return self;
 }
