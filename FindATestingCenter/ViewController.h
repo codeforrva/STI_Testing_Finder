@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "CHCSVParser.h"
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate, CHCSVParserDelegate>
+@interface ViewController : UIViewController <CLLocationManagerDelegate,MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;

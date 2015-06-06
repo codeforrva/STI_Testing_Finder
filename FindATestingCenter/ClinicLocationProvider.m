@@ -19,7 +19,6 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
 
 + (void)requestClinicsWithCompletionHandler:(void(^)(NSArray* clinics, NSError *error))completionHandler {
     
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:brigadeEndpoint parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;
@@ -41,11 +40,7 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
             completionHandler(nil, error);
         }
     }];
-    
 }
-
-
-
 
 + (NSArray *)clinicsObjectsFromResponse:(NSDictionary *)dictionary {
     //NSLog(@"Response Dictionary count: %lu, data: %@", (unsigned long)[dictionary count], dictionary);
@@ -70,15 +65,8 @@ static NSString *brigadeEndpoint = @"https://brigades.opendatanetwork.com/resour
         
         [clinicsArray addObject:clinic];
     }
-    
-    //NSLog(@"Clinic Objects: %@", clinicsArray);
-    
     return clinicsArray;
 }
-
-
-
-
 
 
 @end

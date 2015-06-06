@@ -103,7 +103,7 @@
         CLLocationCoordinate2D coord;
         coord.latitude = latitude;
         coord.longitude = longitude;
-        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:name AndCoordinate:coord];
+        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name AndCoordinate:coord];
         [annotations addObject:annotation];
         
         //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);

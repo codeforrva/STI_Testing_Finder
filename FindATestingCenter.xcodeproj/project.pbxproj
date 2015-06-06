@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6436018513BCF872A04896DA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A7617195CEE0754B417A5D7 /* libPods.a */; };
-		E293B0A31B04216D001FE0F6 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = E293B0A21B04216D001FE0F6 /* CHCSVParser.m */; };
 		E296ED971AB117BB002A01D2 /* ClinicLocationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = E296ED961AB117BB002A01D2 /* ClinicLocationProvider.m */; };
 		E2D108E21A98E53A00A90421 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E11A98E53A00A90421 /* main.m */; };
 		E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E41A98E53A00A90421 /* AppDelegate.m */; };
@@ -36,8 +35,6 @@
 /* Begin PBXFileReference section */
 		5A7617195CEE0754B417A5D7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A33DE946F6C456373575F5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		E293B0A11B04216D001FE0F6 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
-		E293B0A21B04216D001FE0F6 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 		E296ED951AB117BB002A01D2 /* ClinicLocationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClinicLocationProvider.h; sourceTree = "<group>"; };
 		E296ED961AB117BB002A01D2 /* ClinicLocationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClinicLocationProvider.m; sourceTree = "<group>"; };
 		E2D108DC1A98E53A00A90421 /* FindATestingCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindATestingCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +130,6 @@
 				E296ED961AB117BB002A01D2 /* ClinicLocationProvider.m */,
 				E2D1090C1A9918BF00A90421 /* MapViewAnnotation.h */,
 				E2D1090D1A9918BF00A90421 /* MapViewAnnotation.m */,
-				E2D109121A99200900A90421 /* CSV Parser */,
 				E2D108EF1A98E53A00A90421 /* Images.xcassets */,
 				E2D108F11A98E53A00A90421 /* LaunchScreen.xib */,
 				E2D108E61A98E53A00A90421 /* FindATestingCenter.xcdatamodeld */,
@@ -166,15 +162,6 @@
 				E2D108FD1A98E53A00A90421 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E2D109121A99200900A90421 /* CSV Parser */ = {
-			isa = PBXGroup;
-			children = (
-				E293B0A11B04216D001FE0F6 /* CHCSVParser.h */,
-				E293B0A21B04216D001FE0F6 /* CHCSVParser.m */,
-			);
-			name = "CSV Parser";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,7 +299,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E293B0A31B04216D001FE0F6 /* CHCSVParser.m in Sources */,
 				E296ED971AB117BB002A01D2 /* ClinicLocationProvider.m in Sources */,
 				E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */,
 				E2D108E21A98E53A00A90421 /* main.m in Sources */,
