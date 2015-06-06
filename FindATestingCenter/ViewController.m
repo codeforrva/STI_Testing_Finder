@@ -14,7 +14,9 @@
 #import "ViewController.h"
 #import "MapViewAnnotation.h"
 #import "ClinicLocationProvider.h"
+#import "MBProgressHUD.h"
 #define METERS_PER_MILE 1609.344
+
 
 @interface ViewController ()
 
@@ -30,8 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.showsUserLocation = YES;
-    
-    //[self.mapView addAnnotations:[self createAnnotations]];
     
     [self startLocationManager];
     
@@ -77,6 +77,9 @@
 
 
 -(void)fetchData {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Loading clinic information";
+  
     
     [ClinicLocationProvider requestClinicsWithCompletionHandler:^(NSArray *clinics, NSError *error) {
         if (error) {
@@ -84,14 +87,18 @@
         }
 
         [self.mapView addAnnotations:[self createAnnotations:clinics]];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
+
+
+
 
 #pragma mark - Map Methods
 
 - (NSMutableArray *)createAnnotations:(NSArray *)clinicArray {
     
-    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    NSMutableArray *annotationsArray = [[NSMutableArray alloc] init];
     
     for(ClinicDataObject *clinic in clinicArray) {
         
@@ -104,11 +111,11 @@
         coord.latitude = latitude;
         coord.longitude = longitude;
         MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name AndCoordinate:coord];
-        [annotations addObject:annotation];
+        [annotationsArray addObject:annotation];
         
         //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
     }
-    return annotations;
+    return annotationsArray;
 }
 
 @end
