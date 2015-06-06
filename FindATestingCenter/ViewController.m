@@ -31,7 +31,7 @@
     [super viewDidLoad];
     self.mapView.showsUserLocation = YES;
     
-    [self.mapView addAnnotations:[self createAnnotations]];
+    //[self.mapView addAnnotations:[self createAnnotations]];
     
     [self startLocationManager];
     
@@ -72,7 +72,7 @@
 
 
 - (NSString *)deviceLocation {
-    return [NSString stringWithFormat:@"latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
+    return [NSString stringWithFormat:@"Device location - latitude: %f longitude: %f", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude];
 }
 
 
@@ -82,82 +82,33 @@
         if (error) {
             NSLog(@"Error: %@", error);
         }
+
+        [self.mapView addAnnotations:[self createAnnotations:clinics]];
     }];
 }
 
+#pragma mark - Map Methods
 
-#pragma mark - CSV Parsing
-
-- (NSMutableArray *)createAnnotations {
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"locations" ofType:@"csv"];
-    NSURL *url =  [NSURL fileURLWithPath:filePath];
-    CHCSVParser *parser = [[CHCSVParser alloc]initWithContentsOfCSVURL:url];
-    parser.delegate = self;
-    [parser parse];
+- (NSMutableArray *)createAnnotations:(NSArray *)clinicArray {
     
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for(NSArray *row in self.outputArray) {
+    for(ClinicDataObject *clinic in clinicArray) {
         
-        NSString *title = [row objectAtIndex:0];
-        NSNumber *latitude = [row objectAtIndex:11];
-        NSNumber *longitude = [row objectAtIndex:12];
+        NSString *name = clinic.name;
+        CGFloat latitude = clinic.latitude;
+        CGFloat longitude = clinic.longitude;
         
         //Create coordinates from the latitude and longitude values
         CLLocationCoordinate2D coord;
-        coord.latitude = latitude.doubleValue;
-        coord.longitude = longitude.doubleValue;
-        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:title AndCoordinate:coord];
+        coord.latitude = latitude;
+        coord.longitude = longitude;
+        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithTitle:name AndCoordinate:coord];
         [annotations addObject:annotation];
         
-        NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
+        //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
     }
     return annotations;
-}
-
-
-
-#pragma mark - Parser
-
-- (void)parserDidBeginDocument:(CHCSVParser *)parser {
-    self.fields = [[NSMutableArray alloc] init];
-    self.currentRow = [[NSMutableArray alloc] init];
-    self.outputArray = [[NSMutableArray alloc] init];
-}
-
-
-- (void)parser:(CHCSVParser *)parser didBeginLine:(NSUInteger)recordNumber
-{
-    if (recordNumber == 1) {
-        self.fields = [[NSMutableArray alloc]init];
-        self.readingTopLine = YES;
-    }
-    else {
-        self.currentRow = [[NSMutableArray alloc]init];
-        self.readingTopLine = NO;
-    }
-}
-
-- (void)parser:(CHCSVParser *)parser didReadField:(NSString *)field atIndex:(NSInteger)fieldIndex {
-    
-    if (!self.readingTopLine){
-        [self.currentRow addObject:field];
-    }
-}
-
-- (void)parser:(CHCSVParser *)parser didEndLine:(NSUInteger)recordNumber {
-    if (!self.readingTopLine){
-        [self.outputArray addObject:self.currentRow];
-    }
-    self.currentRow = nil;
-}
-
-- (void)parserDidEndDocument:(CHCSVParser *)parser {
-}
-- (void)parser:(CHCSVParser *)parser didFailWithError:(NSError *)error {
-    NSLog(@"Parser failed with error: %@ %@", [error localizedDescription], [error userInfo]);
-    self.outputArray = nil;
 }
 
 @end
