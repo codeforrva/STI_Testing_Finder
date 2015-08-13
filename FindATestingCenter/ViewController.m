@@ -12,6 +12,8 @@
 
 
 #import "ViewController.h"
+#import "ListViewController.h"
+#import "MapViewController.h"
 #import "MapViewAnnotation.h"
 #import "ClinicLocationProvider.h"
 #import "MBProgressHUD.h"
@@ -20,10 +22,14 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) NSMutableArray *fields;
-@property (nonatomic, strong) NSMutableArray *currentRow;
-@property (nonatomic, strong) NSMutableArray *outputArray;
-@property BOOL readingTopLine;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) NSArray *segmentedViewControllers;
+@property (nonatomic, strong) UIViewController *currentViewController;
+@property (nonatomic, strong) IBOutlet UIView *listContentView;
+@property (nonatomic, strong) IBOutlet UIView *mapContentView;
+
+
+
 
 @end
 
@@ -32,21 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapView.showsUserLocation = YES;
-    
+
     [self startLocationManager];
-    
     [self fetchData];
 }
 
--(void)startLocationManager {
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    [self.locationManager requestAlwaysAuthorization];
-    self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
-    [self.locationManager startUpdatingLocation];
-    [self.locationManager requestWhenInUseAuthorization];
-}
 
 
 
@@ -76,25 +72,57 @@
 }
 
 
+
+#pragma mark - Segment control
+// https://github.com/rajohns08/codingdiscovery/tree/master/2015.03.01%20-%20ContainerSwap/ContainerSwap
+
+- (IBAction)didChangeSegmentControl:(UISegmentedControl *)sender {
+
+    UISegmentedControl *segment = sender;
+    
+    switch (segment.selectedSegmentIndex) {
+        case 0:
+            self.listContentView.hidden = NO;
+            break;
+        case 1:
+            self.listContentView.hidden = YES;
+            break;
+        default:
+            break;
+    }
+
+}
+
+
+
+#pragma mark - Map Methods
+
+
 -(void)fetchData {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading clinic information";
-  
+    
     
     [ClinicLocationProvider requestClinicsWithCompletionHandler:^(NSArray *clinics, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
-
+        
         [self.mapView addAnnotations:[self createAnnotations:clinics]];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
+-(void)startLocationManager {
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    self.locationManager.distanceFilter = kCLDistanceFilterNone; // whenever we move
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters; // 100 m
+    [self.locationManager startUpdatingLocation];
+    [self.locationManager requestWhenInUseAuthorization];
+}
 
-
-
-#pragma mark - Map Methods
 
 - (NSMutableArray *)createAnnotations:(NSArray *)clinicArray {
     
@@ -119,4 +147,14 @@
     return annotationsArray;
 }
 
+
+#pragma mark - Memory management
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    for (UIViewController * viewController in self.segmentedViewControllers) {
+        [viewController didReceiveMemoryWarning];
+    }
+}
 @end
