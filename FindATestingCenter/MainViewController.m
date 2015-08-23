@@ -46,7 +46,7 @@
     self.listViewController.view.frame = self.listContentView.bounds;
     [self.listContentView addSubview:self.listViewController.view];
     
-    NSLog(@"map v: %@", self.childViewControllers);
+    NSLog(@"children vc's: %@", self.childViewControllers);
     
     [self findAndSetLocation];
     [self fetchData];
@@ -112,13 +112,12 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Loading clinic information";
     
-    
     [ClinicLocationProvider requestClinicsWithCompletionHandler:^(NSArray *clinics, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
         }
         
-      //  [self.mapViewController.mapView addAnnotations:[self createAnnotations:clinics]];
+        [self.mapViewController addAnnotationsToMap:clinics];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
@@ -134,28 +133,7 @@
 }
 
 
-//- (NSMutableArray *)createAnnotations:(NSArray *)clinicArray {
-//    
-//    NSMutableArray *annotationsArray = [[NSMutableArray alloc] init];
-//    
-//    for(ClinicDataObject *clinic in clinicArray) {
-//        
-//        NSString *name = clinic.name;
-//        NSString *subtitle = clinic.servicesOffered;
-//        CGFloat latitude = clinic.latitude;
-//        CGFloat longitude = clinic.longitude;
-//        
-//        //Create coordinates from the latitude and longitude values
-//        CLLocationCoordinate2D coord;
-//        coord.latitude = latitude;
-//        coord.longitude = longitude;
-//        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name subtitle:subtitle AndCoordinate:coord];
-//        [annotationsArray addObject:annotation];
-//        
-//        //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
-//    }
-//    return annotationsArray;
-//}
+
 
 
 #pragma mark - Memory management

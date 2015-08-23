@@ -15,5 +15,5 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 - (void)setMapFocusRegion:(MKCoordinateRegion)region;
-
+- (void)addAnnotationsToMap:(NSArray *)clinics;
 @end
