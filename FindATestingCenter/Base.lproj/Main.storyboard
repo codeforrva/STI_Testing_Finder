@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -18,16 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CcV-Mb-8VU" userLabel="Map Container View">
-                                <rect key="frame" x="16" y="20" width="568" height="580"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-A7-1UF" userLabel="List Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="1Lp-ZS-VEm" kind="embed" id="JON-cB-TlM"/>
+                                    <segue destination="1Lp-ZS-VEm" kind="embed" id="GRI-6K-cbZ"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iyk-A7-1UF" userLabel="List Container View">
-                                <rect key="frame" x="16" y="20" width="568" height="580"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CcV-Mb-8VU" userLabel="Map Container View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="vwc-Mn-92S" kind="embed" id="8FM-Xa-E0N"/>
+                                    <segue destination="vwc-Mn-92S" kind="embed" id="XCo-Cd-6lB"/>
                                 </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9qO-AE-VSC">
@@ -45,56 +45,62 @@
                                     <action selector="didChangeSegmentControl:" destination="vXZ-lx-hvc" eventType="valueChanged" id="OrY-hC-6cc"/>
                                 </connections>
                             </segmentedControl>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h78-51-c3N">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="SD5-JW-bfT"/>
-                                </connections>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="CcV-Mb-8VU" secondAttribute="bottom" id="6X1-84-jZo"/>
-                            <constraint firstItem="h78-51-c3N" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="AP7-bz-UQp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CcV-Mb-8VU" secondAttribute="trailing" id="GNn-Ja-y2P"/>
-                            <constraint firstItem="Iyk-A7-1UF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Ohg-ik-SQ8"/>
-                            <constraint firstItem="Iyk-A7-1UF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="P8P-T6-acO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CcV-Mb-8VU" secondAttribute="trailing" constant="-16" id="GNn-Ja-y2P"/>
+                            <constraint firstItem="Iyk-A7-1UF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Ohg-ik-SQ8"/>
+                            <constraint firstItem="Iyk-A7-1UF" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="P8P-T6-acO"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Iyk-A7-1UF" secondAttribute="bottom" id="Siu-hW-kM7"/>
-                            <constraint firstItem="CcV-Mb-8VU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UYh-0N-QNE"/>
+                            <constraint firstItem="CcV-Mb-8VU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="UYh-0N-QNE"/>
                             <constraint firstAttribute="centerX" secondItem="9qO-AE-VSC" secondAttribute="centerX" id="Z9g-Ns-yGA"/>
-                            <constraint firstItem="CcV-Mb-8VU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="cbh-Wr-HGI"/>
-                            <constraint firstItem="h78-51-c3N" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="lhl-b1-rU8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Iyk-A7-1UF" secondAttribute="trailing" id="q8P-Ks-X8y"/>
+                            <constraint firstItem="CcV-Mb-8VU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="cbh-Wr-HGI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Iyk-A7-1UF" secondAttribute="trailing" constant="-16" id="q8P-Ks-X8y"/>
                             <constraint firstItem="9qO-AE-VSC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="qNW-NC-ZCV"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="h78-51-c3N" secondAttribute="bottom" id="qgA-Js-wRp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h78-51-c3N" secondAttribute="trailing" constant="-16" id="uEV-oA-e5T"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="listContentView" destination="Iyk-A7-1UF" id="6wB-6v-sk0"/>
                         <outlet property="mapContentView" destination="CcV-Mb-8VU" id="npk-eb-X7R"/>
-                        <outlet property="mapView" destination="h78-51-c3N" id="HZz-I8-dJq"/>
                         <outlet property="segmentedControl" destination="9qO-AE-VSC" id="6JZ-Ve-5XB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-95" y="-141"/>
+            <point key="canvasLocation" x="-100" y="-157"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="rxk-N5-A11">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vwc-Mn-92S" userLabel="Map View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapVC" automaticallyAdjustsScrollViewInsets="NO" id="vwc-Mn-92S" userLabel="Map View Controller" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hAX-gX-kXr"/>
                         <viewControllerLayoutGuide type="bottom" id="x7Z-WO-bxh"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SQs-mV-dox">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="580"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h78-51-c3N">
+                                <rect key="frame" x="0.0" y="-20" width="600" height="620"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vwc-Mn-92S" id="csO-h7-gTg"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="0.99769906799999997" blue="0.4109511596" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="x7Z-WO-bxh" firstAttribute="top" secondItem="h78-51-c3N" secondAttribute="bottom" id="9fX-nc-JXP"/>
+                            <constraint firstItem="h78-51-c3N" firstAttribute="top" secondItem="hAX-gX-kXr" secondAttribute="bottom" constant="-20" id="UVr-Kq-GcR"/>
+                            <constraint firstItem="h78-51-c3N" firstAttribute="leading" secondItem="SQs-mV-dox" secondAttribute="leadingMargin" constant="-16" id="u0n-ii-DjM"/>
+                            <constraint firstItem="h78-51-c3N" firstAttribute="trailing" secondItem="SQs-mV-dox" secondAttribute="trailingMargin" constant="16" id="w7R-Lo-n2j"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="mapView" destination="h78-51-c3N" id="Uow-m3-Duc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2X-s8-bZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,13 +109,13 @@
         <!--List View Controller-->
         <scene sceneID="rGP-X9-wFl">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1Lp-ZS-VEm" userLabel="List View Controller" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListVC" automaticallyAdjustsScrollViewInsets="NO" id="1Lp-ZS-VEm" userLabel="List View Controller" customClass="ListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hhS-W1-ehT"/>
                         <viewControllerLayoutGuide type="bottom" id="YkR-Xn-y6B"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dlu-p4-wQZ">
-                        <rect key="frame" x="0.0" y="0.0" width="568" height="580"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -117,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQs-9K-yga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="418"/>
+            <point key="canvasLocation" x="782" y="350"/>
         </scene>
     </scenes>
 </document>

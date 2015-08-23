@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     NSLog(@"Clinic list view controller");
 }
 

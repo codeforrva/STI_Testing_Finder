@@ -11,35 +11,44 @@
 
 
 
-#import "ViewController.h"
+#import "MainViewController.h"
 #import "ListViewController.h"
 #import "MapViewController.h"
-#import "MapViewAnnotation.h"
 #import "ClinicLocationProvider.h"
 #import "MBProgressHUD.h"
 #define METERS_PER_MILE 1609.344
 
 
-@interface ViewController ()
+@interface MainViewController ()
 
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) NSArray *segmentedViewControllers;
-@property (nonatomic, strong) UIViewController *currentViewController;
 @property (nonatomic, strong) IBOutlet UIView *listContentView;
 @property (nonatomic, strong) IBOutlet UIView *mapContentView;
 
+@property (nonatomic, strong) MapViewController *mapViewController;
+@property (nonatomic, strong) ListViewController *listViewController;
 
 
 
 @end
 
-@implementation ViewController
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mapView.showsUserLocation = YES;
-
     [self startLocationManager];
+    self.mapViewController =[self.childViewControllers objectAtIndex:1];//[self.storyboard instantiateViewControllerWithIdentifier:@"MapVC"];
+    self.listViewController =[self.childViewControllers objectAtIndex:0];// [self.storyboard instantiateViewControllerWithIdentifier:@"ListVC"];
+
+    self.mapViewController.view.frame = self.mapContentView.bounds;
+    [self.mapContentView addSubview:self.mapViewController.view];
+    self.listViewController.view.frame = self.listContentView.bounds;
+    [self.listContentView addSubview:self.listViewController.view];
+    
+    NSLog(@"map v: %@", self.childViewControllers);
+    
+    [self findAndSetLocation];
     [self fetchData];
 }
 
@@ -47,10 +56,15 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+
+}
+
+- (void)findAndSetLocation {
     CLLocationCoordinate2D zoomLocation;
     
-    if (self.locationManager.location.coordinate.latitude == 0.0) {
-        //If location not enabled, zoom in on Daily Planet location
+    if (![CLLocationManager locationServicesEnabled]) {
+    //If location not enabled, zoom in on Daily Planet location
         zoomLocation.latitude = 37.5476;
         zoomLocation.longitude = -77.4476;
     } else {
@@ -59,11 +73,7 @@
     }
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 8*METERS_PER_MILE, 8*METERS_PER_MILE);
-
-    [self.mapView setRegion:viewRegion animated:YES];
-    [self.mapView regionThatFits:viewRegion];
-    
-    NSLog(@"%@", [self deviceLocation]);
+    [self.mapViewController setMapFocusRegion:viewRegion];
 }
 
 
@@ -74,7 +84,8 @@
 
 
 #pragma mark - Segment control
-// https://github.com/rajohns08/codingdiscovery/tree/master/2015.03.01%20-%20ContainerSwap/ContainerSwap
+//http://codingdiscovery.blogspot.com/2015/03/swap-viewcontrollers-with-segmented.html
+
 
 - (IBAction)didChangeSegmentControl:(UISegmentedControl *)sender {
 
@@ -82,15 +93,14 @@
     
     switch (segment.selectedSegmentIndex) {
         case 0:
-            self.listContentView.hidden = NO;
+            self.mapContentView.hidden = NO;
             break;
         case 1:
-            self.listContentView.hidden = YES;
+            self.mapContentView.hidden = YES;
             break;
         default:
             break;
     }
-
 }
 
 
@@ -108,7 +118,7 @@
             NSLog(@"Error: %@", error);
         }
         
-        [self.mapView addAnnotations:[self createAnnotations:clinics]];
+      //  [self.mapViewController.mapView addAnnotations:[self createAnnotations:clinics]];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
@@ -124,28 +134,28 @@
 }
 
 
-- (NSMutableArray *)createAnnotations:(NSArray *)clinicArray {
-    
-    NSMutableArray *annotationsArray = [[NSMutableArray alloc] init];
-    
-    for(ClinicDataObject *clinic in clinicArray) {
-        
-        NSString *name = clinic.name;
-        NSString *subtitle = clinic.servicesOffered;
-        CGFloat latitude = clinic.latitude;
-        CGFloat longitude = clinic.longitude;
-        
-        //Create coordinates from the latitude and longitude values
-        CLLocationCoordinate2D coord;
-        coord.latitude = latitude;
-        coord.longitude = longitude;
-        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name subtitle:subtitle AndCoordinate:coord];
-        [annotationsArray addObject:annotation];
-        
-        //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
-    }
-    return annotationsArray;
-}
+//- (NSMutableArray *)createAnnotations:(NSArray *)clinicArray {
+//    
+//    NSMutableArray *annotationsArray = [[NSMutableArray alloc] init];
+//    
+//    for(ClinicDataObject *clinic in clinicArray) {
+//        
+//        NSString *name = clinic.name;
+//        NSString *subtitle = clinic.servicesOffered;
+//        CGFloat latitude = clinic.latitude;
+//        CGFloat longitude = clinic.longitude;
+//        
+//        //Create coordinates from the latitude and longitude values
+//        CLLocationCoordinate2D coord;
+//        coord.latitude = latitude;
+//        coord.longitude = longitude;
+//        MapViewAnnotation *annotation = [[MapViewAnnotation alloc] initWithName:name subtitle:subtitle AndCoordinate:coord];
+//        [annotationsArray addObject:annotation];
+//        
+//        //  NSLog(@"Title: %@, Latitude: %@, Longitude %@", title, latitude, longitude);
+//    }
+//    return annotationsArray;
+//}
 
 
 #pragma mark - Memory management

@@ -12,7 +12,7 @@
 		E2D108E21A98E53A00A90421 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E11A98E53A00A90421 /* main.m */; };
 		E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E41A98E53A00A90421 /* AppDelegate.m */; };
 		E2D108E81A98E53A00A90421 /* FindATestingCenter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2D108E61A98E53A00A90421 /* FindATestingCenter.xcdatamodeld */; };
-		E2D108EB1A98E53A00A90421 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108EA1A98E53A00A90421 /* ViewController.m */; };
+		E2D108EB1A98E53A00A90421 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2D108EA1A98E53A00A90421 /* MainViewController.m */; };
 		E2D108EE1A98E53A00A90421 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2D108EC1A98E53A00A90421 /* Main.storyboard */; };
 		E2D108F01A98E53A00A90421 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2D108EF1A98E53A00A90421 /* Images.xcassets */; };
 		E2D108F31A98E53A00A90421 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2D108F11A98E53A00A90421 /* LaunchScreen.xib */; };
@@ -45,8 +45,8 @@
 		E2D108E31A98E53A00A90421 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E2D108E41A98E53A00A90421 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E2D108E71A98E53A00A90421 /* FindATestingCenter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FindATestingCenter.xcdatamodel; sourceTree = "<group>"; };
-		E2D108E91A98E53A00A90421 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E2D108EA1A98E53A00A90421 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E2D108E91A98E53A00A90421 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		E2D108EA1A98E53A00A90421 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		E2D108ED1A98E53A00A90421 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E2D108EF1A98E53A00A90421 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E2D108F21A98E53A00A90421 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 				E2D108EC1A98E53A00A90421 /* Main.storyboard */,
 				E2D108E31A98E53A00A90421 /* AppDelegate.h */,
 				E2D108E41A98E53A00A90421 /* AppDelegate.m */,
-				E2D108E91A98E53A00A90421 /* ViewController.h */,
-				E2D108EA1A98E53A00A90421 /* ViewController.m */,
+				E2D108E91A98E53A00A90421 /* MainViewController.h */,
+				E2D108EA1A98E53A00A90421 /* MainViewController.m */,
 				E2D9122C1B2906BC00D76F15 /* List View */,
 				E2D912281B29068500D76F15 /* Map View */,
 				E296ED951AB117BB002A01D2 /* ClinicLocationProvider.h */,
@@ -329,7 +329,7 @@
 				E2D108E51A98E53A00A90421 /* AppDelegate.m in Sources */,
 				E2D9122F1B2906F200D76F15 /* ListViewController.m in Sources */,
 				E2D108E21A98E53A00A90421 /* main.m in Sources */,
-				E2D108EB1A98E53A00A90421 /* ViewController.m in Sources */,
+				E2D108EB1A98E53A00A90421 /* MainViewController.m in Sources */,
 				E2D108E81A98E53A00A90421 /* FindATestingCenter.xcdatamodeld in Sources */,
 				E2D1090E1A9918BF00A90421 /* MapViewAnnotation.m in Sources */,
 				E2D9122B1B2906B400D76F15 /* MapViewController.m in Sources */,
