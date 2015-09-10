@@ -63,8 +63,8 @@
 - (void)findAndSetLocation {
     CLLocationCoordinate2D zoomLocation;
     
-    if (![CLLocationManager locationServicesEnabled]) {
-    //If location not enabled, zoom in on Daily Planet location
+    if (TARGET_OS_IPHONE || ![CLLocationManager locationServicesEnabled]) {
+    //If location not enabled, or on simulator, zoom in on Daily Planet location
         zoomLocation.latitude = 37.5476;
         zoomLocation.longitude = -77.4476;
     } else {
@@ -118,6 +118,7 @@
         }
         
         [self.mapViewController addAnnotationsToMap:clinics];
+        [self.listViewController provideDataToTableView:clinics];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
